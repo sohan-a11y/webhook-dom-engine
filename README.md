@@ -1,5 +1,12 @@
 # Webhook-to-DOM Execution Engine (`webhook-dom-engine`)
 
+![GitHub License](https://img.shields.io/github/license/sohan-a11y/webhook-dom-engine?style=flat-square)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/sohan-a11y/webhook-dom-engine?style=flat-square)
+![GitHub Stars](https://img.shields.io/github/stars/sohan-a11y/webhook-dom-engine?style=flat-square)
+
+[![Skills](https://skillicons.dev/icons?i=python,fastapi,docker)](https://skillicons.dev)
+
+
 A concurrent FastAPI microservice that accepts macro action webhooks and executes them against a headless Playwright Chromium pool, returning scraped DOM values in JSON.
 
 ## Quickstart
@@ -27,3 +34,14 @@ curl -X POST http://127.0.0.1:8000/api/v1/execute \
     "return_selector": ".titleline > a"
   }'
 ```
+
+
+---
+
+<div align="center">
+
+**Built by [M Sai Sohan (@sohan-a11y)](https://github.com/sohan-a11y)**
+
+*If you find this project useful, please consider giving it a ⭐ on GitHub!*
+
+</div>
