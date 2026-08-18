@@ -1,72 +1,37 @@
-# Webhook-to-DOM Execution Engine ⚙️
+# Webhook-to-DOM Execution Engine (`webhook-dom-engine`)
 
 ![GitHub License](https://img.shields.io/github/license/sohan-a11y/webhook-dom-engine?style=flat-square)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/sohan-a11y/webhook-dom-engine?style=flat-square)
 ![GitHub Stars](https://img.shields.io/github/stars/sohan-a11y/webhook-dom-engine?style=flat-square)
 ![GitHub Forks](https://img.shields.io/github/forks/sohan-a11y/webhook-dom-engine?style=flat-square)
 
-
-Webhook-to-DOM Execution Engine: Concurrent FastAPI microservice executing Playwright action flows against headless browser pools.
-
----
-
-## 🌟 Key Features
-
-- 🚀 **Asynchronous Macro Execution**: Trigger multi-step Playwright actions via clean JSON webhooks.
-- 🏊 **Concurrent Browser Pool**: Reusable Chromium instance pool for low-latency DOM extraction.
-- 📊 **Structured JSON Extraction**: Extracts targeted DOM nodes via CSS/XPath selectors.
-- ⚡ **FastAPI Backend**: Built-in validation, health monitoring, and OpenAPI documentation.
-
----
-
-## 🛠️ Tech Stack
-
 [![Skills](https://skillicons.dev/icons?i=python,fastapi,docker)](https://skillicons.dev)
 
----
 
-## 🚀 Quick Start
+A concurrent FastAPI microservice that accepts macro action webhooks and executes them against a headless Playwright Chromium pool, returning scraped DOM values in JSON.
 
-### Prerequisites
-- Python 3.9+ / Node.js (depending on module)
-- Git
+## Quickstart
 
-### Installation
+1. Install dependencies:
 ```bash
-# Clone repository
-git clone https://github.com/sohan-a11y/webhook-dom-engine.git
-cd webhook-dom-engine
-
-# Install dependencies (if python project)
 pip install -r requirements.txt
+playwright install chromium
 ```
 
----
-
-## 💡 Usage Example
-
+2. Run the server:
 ```bash
-# Run application entrypoint
-python main.py
+python app.py
 ```
 
----
-
-## 🗺️ Roadmap & Future Enhancements
-- [x] Initial release & core functionality
-- [ ] Enterprise security integration
-- [ ] Multi-tenant Cloud deployment support
-- [ ] Advanced performance profiling
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/sohan-a11y/webhook-dom-engine/issues).
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for details.
+3. Test with cURL:
+```bash
+curl -X POST http://127.0.0.1:8000/api/v1/execute \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://news.ycombinator.com",
+    "actions": [
+      { "action": "WAIT_FOR", "selector": ".titleline > a" }
+    ],
+    "return_selector": ".titleline > a"
+  }'
+```
